@@ -3,6 +3,27 @@
 
     <div class="parent-child">
       <div class="parent-child-internal">
+        <h3>Child inputs</h3>
+        <InputSample v-model:value="formData.name" placeholder="Type Your Name" />
+        <InputSample v-model:value="formData.email" placeholder="Type Your Email" />
+        <h3>Parent object fed by emit</h3>
+        {{ formData }}
+      </div>
+    </div>
+
+    <div class="parent-child">
+      <div class="parent-child-internal">
+        <h3>Emit function event sample</h3>
+        <form>
+          <RadioSample v-for="item in reactiveForLoop" @send-message="checkRadio" :key="item.id" :value="formData.name" :label="item.name" />
+          <br />
+          {{ radioSelected }}
+        </form>
+      </div>
+    </div>
+
+    <div class="parent-child">
+      <div class="parent-child-internal">
         <h3>Conditional state style</h3>
         <p><img alt="Vue logo" src="../assets/logo.png" class="static" :class="{ activeClass: activeClass }"></p>
         <button @click="toggleClass" class="button-3">Click to Increase</button>
@@ -89,12 +110,16 @@ import { defineComponent, ref, toRefs, watch, reactive, onMounted, onUpdated, on
 import HelloWorld from '@/components/HelloWorld.vue'
 import DependencyInjection from '@/components/DependencyInjection.vue'
 import InterfaceSample from '@/types/InterfaceSample'
+import InputSample from '@/components/InputSample.vue'
+import RadioSample from '@/components/RadioSample.vue'
 
 export default defineComponent({
   name: 'Home',
   components: {
     HelloWorld,
     DependencyInjection,
+    InputSample,
+    RadioSample,
   },
   props: {
     propSampleA: {type: String, default: 'pro test A'},
@@ -107,6 +132,21 @@ export default defineComponent({
     },
   },
   setup(props, context) {
+
+    // Form data
+    const formData = reactive({
+      name: 'Tiago Tavares',
+      email: 'email@email.com',
+    });
+
+    // Radio sample
+    let radioSelected = reactive({
+      title: "No"
+    })
+
+    function checkRadio(){
+      radioSelected.title = 'Yes';
+    }
 
     // Conditional style
     const activeClass = ref(true)
@@ -144,10 +184,10 @@ export default defineComponent({
 
     // Reactive v-for sample
     const reactiveForLoop = reactive([
-      {id: 1, name: "John Doe"},
-      {id: 2, name: "Barbara Doe"},
-      {id: 3, name: "Don Dinner"},
-      {id: 4, name: "Jack Jackson"}
+      {id: 1, name: "John"},
+      {id: 2, name: "Barbara"},
+      {id: 3, name: "Don"},
+      {id: 4, name: "Jack"}
     ])
 
     // V-if sample
@@ -193,7 +233,10 @@ export default defineComponent({
       reactiveForLoop,
       propSampleA,
       propSampleB,
-      propSampleC
+      propSampleC,
+      formData,
+      radioSelected,
+      checkRadio
     }
   },
 });

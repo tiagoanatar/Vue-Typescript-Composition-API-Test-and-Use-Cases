@@ -10,7 +10,7 @@ import { defineComponent, inject, onMounted } from 'vue';
 export default defineComponent({
   name: 'DependencyInjection',
   setup() {
-    const globalData = inject('global')
+    const globalData:any = inject('global')
 
     onMounted(() => {
       console.log(globalData)

@@ -1,5 +1,4 @@
-# Live URL
-https://codesandbox.io/s/strange-benz-pqppn
+# v-base-01
 
 ## Project setup
 ```
