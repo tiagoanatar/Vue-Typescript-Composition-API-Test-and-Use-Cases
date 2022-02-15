@@ -4,7 +4,7 @@
       <h3>Emit function event sample</h3>
       <form>
         <ul>
-          <RadioSample v-for="item in reactiveForLoop" @send-message="checkRadio" :key="item.id" :idItem="item.id" :value="item.name" :label="item.name" />
+          <RadioSample2 v-for="item in reactiveForLoop" @send-message="checkRadio" :key="item.id" :idItem="item.id" :value="item.name" :label="item.name" />
         </ul>
         {{ radioSelected }}
       </form>
@@ -15,11 +15,13 @@
 <script lang="ts">
 import { defineComponent, inject, reactive } from 'vue';
 import RadioSample from '@/components/RadioEmit/RadioSample.vue'
+import RadioSample2 from '@/components/RadioEmit/RadioSample2.vue'
 
 export default defineComponent({
   name: 'RadioEmit',
   components: {
     RadioSample,
+    RadioSample2
   },
   setup() {
     const reactiveForLoop = reactive([
