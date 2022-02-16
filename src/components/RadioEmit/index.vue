@@ -4,7 +4,15 @@
       <h3>Emit function event sample</h3>
       <form>
         <ul>
-          <RadioSample2 v-for="item in reactiveForLoop" @send-message="checkRadio" :key="item.id" :idItem="item.id" :value="item.name" :label="item.name" />
+          <RadioSample 
+            v-for="item in reactiveForLoop" 
+            @send-message="checkRadio" 
+            :key="item.id" 
+            :idItem="item.id" 
+            :value="item.name" 
+            :label="item.name" 
+            :idSelected="radioSelected.id"
+          />
         </ul>
         {{ radioSelected }}
       </form>
